@@ -5,7 +5,7 @@
       "name": "AdministratorCollection",
       "contents": [
         {
-          "username": "admin@hacchui.ics.hawaii.edu",
+          "username": "admin@hacchui.ics.foo.com",
           "firstName": "Admin",
           "lastName": "HACC-Hui"
         }
@@ -97,13 +97,13 @@
       "name": "ParticipantCollection",
       "contents": [
         {
-          "username": "aunggum@hawaii.edu",
+          "username": "aung@foo.com",
           "firstName": "Gum",
           "lastName": "Aung",
-          "demographicLevel": "College",
+          "demographicLevel": "High school",
           "isCompliant": true,
-          "linkedIn": "https://www.linkedin.com/in/gum-aung-7a814b178/",
-          "gitHub": "https://github.com/gumsanaung/",
+          "linkedIn": "",
+          "gitHub": "",
           "challenges": [
             "gamify-hawaii-historical-records-indexing"
           ],
@@ -115,13 +115,13 @@
           ]
         },
         {
-          "username": "jhsu2@hawaii.edu",
+          "username": "jenny@foo.com",
           "firstName": "Jenny",
           "lastName": "Hsu",
           "demographicLevel": "College",
           "isCompliant": true,
-          "linkedIn": "https://www.linkedin.com/in/jennifer-hsu-6788b9153/",
-          "gitHub": "https://github.com/jhsuP",
+          "linkedIn": "",
+          "gitHub": "",
           "challenges": [
             "gamify-hawaii-historical-records-indexing"
           ],
@@ -142,13 +142,13 @@
           ]
         },
         {
-          "username": "kentung@hawaii.edu",
+          "username": "kentung@foo.com",
           "firstName": "Ken",
           "lastName": "Tung",
-          "demographicLevel": "College",
+          "demographicLevel": "Professional",
           "isCompliant": true,
           "linkedIn": "",
-          "gitHub": "https://github.com/ken-10",
+          "gitHub": "",
           "challenges": [
             "gamify-hawaii-historical-records-indexing"
           ],
@@ -160,13 +160,13 @@
           ]
         },
         {
-          "username": "arslanr@hawaii.edu",
+          "username": "arslan@foo.com",
           "firstName": "Arslan",
           "lastName": "Rakhmankulov",
-          "demographicLevel": "College",
-          "isCompliant": true,
-          "linkedIn": "https://www.linkedin.com/in/arslan-rakhmankulov/",
-          "gitHub": "https://github.com/arslan-r",
+          "demographicLevel": "High school",
+          "isCompliant": false,
+          "linkedIn": "",
+          "gitHub": "",
           "challenges": [
             "gamify-hawaii-historical-records-indexing"
           ],
@@ -178,13 +178,13 @@
           ]
         },
         {
-          "username": "tasumida@hawaii.edu",
+          "username": "tasumida@foo.com",
           "firstName": "Trey Allen",
           "lastName": "Sumida",
           "demographicLevel": "College",
           "isCompliant": true,
-          "linkedIn": "https://www.linkedin.com/in/trey-allen-sumida-564305192/",
-          "gitHub": "https://github.com/trey-sumida",
+          "linkedIn": "",
+          "gitHub": "",
           "challenges": [
             "gamify-hawaii-historical-records-indexing"
           ],
@@ -202,13 +202,13 @@
           ]
         },
         {
-          "username": "aamascua@hawaii.edu",
+          "username": "angeli@foo.com",
           "firstName": "Angeli",
           "lastName": "Amascual",
           "demographicLevel": "College",
           "isCompliant": true,
-          "linkedIn": "https://www.linkedin.com/in/angeliamascual/",
-          "gitHub": "https://github.com/angeli-amascual",
+          "linkedIn": "",
+          "gitHub": "",
           "aboutMe": "Hi, I'm a fourth-year Computer Science Major at UH Manoa.",
           "challenges": [
             "family-resource-directory"
@@ -230,13 +230,13 @@
           ]
         },
         {
-          "username": "jiangyuh@hawaii.edu",
+          "username": "jiangyuh@foo.com",
           "firstName": "Yuhan",
           "lastName": "Jiang",
           "demographicLevel": "College",
           "isCompliant": true,
-          "linkedIn": "https://www.linkedin.com/in/yuhanjiang/",
-          "gitHub": "https://github.com/yuhanj",
+          "linkedIn": "",
+          "gitHub": "",
           "challenges": [
           ],
           "interests": [
@@ -249,12 +249,12 @@
           ]
         },
         {
-          "username": "heweiron@hawaii.edu",
+          "username": "heweiron@foo.com",
           "firstName": "Weirong",
           "lastName": "He",
           "demographicLevel": "College",
           "isCompliant": true,
-          "gitHub": "https://github.com/heweiron",
+          "gitHub": "",
           "challenges": [
             "uh-building-security"
           ],
@@ -269,7 +269,7 @@
           ]
         },
         {
-          "username": "tianhui@hawaii.edu",
+          "username": "tianhui@foo.com",
           "firstName": "Tianhui",
           "lastName": "Zhou",
           "demographicLevel": "College",
@@ -296,7 +296,7 @@
           "lastName": "Summey",
           "isCompliant": true,
           "gitHub": "gsummey",
-          "linkedIn": "https://www.linkedin.com/in/garth-summey/",
+          "linkedIn": "",
           "challenges": [
           ],
           "interests": [
@@ -377,16 +377,16 @@
         {
           "name":  "ByteCryb",
           "description": "Team of 5 UHM Computer Science Undergraduates",
-          "owner": "aunggum@hawaii.edu",
+          "owner": "aung@foo.com",
           "open": true,
           "affiliation": "UHM",
           "challenges": ["gamify-hawaii-historical-records-indexing"],
           "participants": [
-            "aunggum@hawaii.edu",
-            "jhsu2@hawaii.edu",
-            "kentung@hawaii.edu",
-            "arslanr@hawaii.edu",
-            "tasumida@hawaii.edu"
+            "aung@foo.com",
+            "jenny@foo.com",
+            "kentung@foo.com",
+            "arslan@foo.com",
+            "tasumida@foo.com"
           ],
           "skills": [],
           "tools": [],
@@ -396,14 +396,14 @@
         {
           "name" : "Trigeeks",
           "description" : "We are a team of three trying to make a satisfying product.",
-          "owner": "jiangyuh@hawaii.edu",
+          "owner": "jiangyuh@foo.com",
           "open": false,
           "affiliation": "UHM",
           "challenges": ["uh-building-security"],
           "participants": [
-            "jiangyuh@hawaii.edu",
-            "heweiron@hawaii.edu",
-            "tianhui@hawaii.edu"
+            "jiangyuh@foo.com",
+            "heweiron@foo.com",
+            "tianhui@foo.com"
           ],
           "skills": [],
           "tools": [],

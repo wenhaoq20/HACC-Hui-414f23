@@ -25,9 +25,9 @@ review-xxx
 
 ## Checklists
 
-* [Architecture](/blob/main/checklists/architecture-checklist.md)
-* [Design](../../checklists/design-checklist.md)
-* [JS](../../checklists/js-checklist.md)
+* [Architecture](../blob/main/checklists/architecture-checklist.md)
+* [Design](../../blob/main/checklists/design-checklist.md)
+* [JS](./blob/main/checklists/js-checklist.md)
 * [React](../../checklists/react-checklist.md)
 * [Testing](../../checklists/testing-checklist.md)
 

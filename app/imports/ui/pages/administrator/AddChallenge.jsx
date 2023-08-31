@@ -4,6 +4,9 @@ import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic
 import swal from 'sweetalert';
 import { SimpleSchema2Bridge } from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import { Col, Container, Row } from 'react-bootstrap';
 import { defineMethod } from '../../../api/base/BaseCollection.methods';
 import { Challenges } from '../../../api/challenge/ChallengeCollection';
 
@@ -29,6 +32,7 @@ class AddChallenge extends React.Component {
     const { title, description, submissionDetail, pitch } = data;
     const definitionData = { title, description, submissionDetail, pitch };
     const collectionName = Challenges.getCollectionName();
+    console.log(formRef);
     console.log(collectionName);
     defineMethod.call({ collectionName: collectionName, definitionData: definitionData },
         (error) => {
@@ -48,23 +52,55 @@ class AddChallenge extends React.Component {
     let fRef = null;
     const formSchema = new SimpleSchema2Bridge(schema);
     return (
-        <Grid container centered>
-          <Grid.Column>
-            <Header as="h2" textAlign="center">Add a challenge</Header>
-            <AutoForm ref={ref => {
-              fRef = ref;
-            }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
-              <Segment>
-                <TextField name='title' />
-                <TextField name='description' />
-                <TextField name='submissionDetail' />
-                <TextField name='pitch' />
-                <SubmitField value='Submit' />
-                <ErrorsField />
-              </Segment>
-            </AutoForm>
-          </Grid.Column>
-        </Grid>
+        /*  <Grid container centered>
+            <Grid.Column>
+              <Header as="h2" textAlign="center">Add a challenge</Header>
+              <AutoForm ref={ref => {
+                fRef = ref;
+              }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
+                <Segment>
+                  <TextField name='title' />
+                  <TextField name='description' />
+                  <TextField name='submissionDetail' />
+                  <TextField name='pitch' />
+                  <SubmitField value='Submit' />
+                  <ErrorsField />
+                </Segment>
+              </AutoForm>
+            </Grid.Column>
+          </Grid> */
+        <Container>
+          <Header as="h2" textAlign="center">Add a challenge</Header>
+          <Row>
+            <Col></Col>
+            <Col xs={8}>
+              <Form ref={ref => {
+                fRef = ref;
+              }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
+                <Form.Group className="mb-3" controlId="formTitle">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control type="Title" placeholder="Enter Title"/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formDescription">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control type="Description" placeholder="Enter Description"/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="formSubmissionDetail">
+                  <Form.Label>Submission Detail</Form.Label>
+                  <Form.Control type="SubmissionDetail" placeholder="Enter Submission Detail"/>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="pitch">
+                  <Form.Label>Pitch</Form.Label>
+                  <Form.Control type="Pitch" placeholder="Enter Pitch"/>
+                </Form.Group>
+                <Button variant="primary" type="submit">
+                  Submit
+                </Button>
+              </Form>
+            </Col>
+            <Col></Col>
+          </Row>
+        </Container>
     );
   }
 }

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Icon } from 'semantic-ui-react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 
 /**
@@ -137,7 +136,7 @@ const Landing = () => (
               alignItems: 'center',
             }}
           >
-            <Icon size='massive' name="eye" />
+            <Image width='150px' src='/images/eyes.png' />
             <b style={{ fontSize: 30, fontStyle: 'italic', margin: 15 }}>
               <a href="https://hacc.hawaii.gov/hacc-rules/" style={{ textDecoration: 'none' }}>HACC Rules</a>
             </b>
@@ -151,7 +150,7 @@ const Landing = () => (
               alignItems: 'center',
             }}
           >
-            <Icon name="gavel" size='massive' />
+            <Image width='150px' src='/images/gavel.svg' />
             <b style={{ fontSize: 30, fontStyle: 'italic', margin: 15 }}>
               <a href="https://hacc.hawaii.gov/hacc-judging-criteria/" style={{ textDecoration: 'none' }}>
                 HACC Judging Criteria

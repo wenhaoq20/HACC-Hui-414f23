@@ -16,10 +16,3 @@ export const footer = {
 export const greyStyle = {
   backgroundColor: '#C4C4C4',
 };
-
-export const header = {
-  backgroundColor: '#124884',
-  color: 'white',
-  paddingTop: 15,
-  paddingBottom: 15,
-};

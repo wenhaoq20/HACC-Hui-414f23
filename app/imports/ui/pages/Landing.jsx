@@ -6,7 +6,7 @@ import { Container, Row, Col, Image } from 'react-bootstrap';
  * @memberOf ui/pages
  */
 const Landing = () => (
-      <Container fluid>
+      <Container id={'landing'} fluid>
         <Row style={{ margin: 50 }}>
           <Col
             width={8}

@@ -1,12 +1,10 @@
 import React from 'react';
-// import { Grid, Segment, Header } from 'semantic-ui-react';
-// import { AutoForm, AutoField, ErrorsField } from 'meteor/aldeed:autoform';
 import swal from 'sweetalert';
 import { SimpleSchema2Bridge } from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Alert, Col, Container, Row } from 'react-bootstrap';
 import { defineMethod } from '../../../api/base/BaseCollection.methods';
 import { Challenges } from '../../../api/challenge/ChallengeCollection';
 
@@ -23,7 +21,6 @@ const schema = new SimpleSchema({
  * @memberOf ui/pages
  */
 class AddChallenge extends React.Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -31,6 +28,7 @@ class AddChallenge extends React.Component {
       description: '',
       submissionDetail: '',
       pitch: '',
+      invalidFields: [],
     };
   }
 
@@ -40,30 +38,49 @@ class AddChallenge extends React.Component {
   }
 
   /** On submit, insert the data.
-   * @param data {Object} the results from the form.
-   * @param formRef {FormRef} reference to the form.
    */
   submit() {
-    const { title, description, submissionDetail, pitch } = this.state;
-    const definitionData = { title, description, submissionDetail, pitch };
-    const collectionName = Challenges.getCollectionName();
-    console.log(definitionData);
-    defineMethod.call({ collectionName: collectionName, definitionData: definitionData },
-        (error) => {
-          if (error) {
-            swal('Error', error.message, 'error');
-            // console.error(error.message);
-          } else {
-            swal('Success', 'Item added successfully', 'success');
-            this.setState({
-              title: '',
-              description: '',
-              submissionDetail: '',
-              pitch: '',
-            });
-            // console.log('Success');
-          }
-        });
+    const invalidFields = this.validateFields();
+    if (invalidFields.length > 0) {
+      this.setState({ invalidFields });
+    } else {
+      const { title, description, submissionDetail, pitch } = this.state;
+      const definitionData = { title, description, submissionDetail, pitch };
+      const collectionName = Challenges.getCollectionName();
+      defineMethod.call({ collectionName: collectionName, definitionData: definitionData },
+          (error) => {
+            if (error) {
+              swal('Error', error.message, 'error');
+              // console.error(error.message);
+            } else {
+              swal('Success', 'Item added successfully', 'success');
+              this.setState({
+                title: '',
+                description: '',
+                submissionDetail: '',
+                pitch: '',
+                invalidFields: [],
+              });
+              // console.log('Success');
+            }
+          });
+    }
+  }
+
+  validateFields = () => {
+    const fieldsToValidate = ['title', 'description', 'submissionDetail', 'pitch'];
+    const fields = ['Title', 'Description', 'Submission Detail', 'Pitch'];
+    const invalidFields = [];
+    let i = 0;
+    fieldsToValidate.forEach((fieldName) => {
+      const fieldValue = this.state[fieldName].trim();
+      if (!fieldValue) {
+        invalidFields.push(fields[i]);
+      }
+      i++;
+    });
+
+    return invalidFields;
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -119,6 +136,11 @@ class AddChallenge extends React.Component {
                         onClick={data => this.submit(data, fRef)}>
                   Submit
                 </Button>
+                {this.state.invalidFields.length > 0 && (
+                    <Alert name="invalidAlert" variant="danger">
+                      The following fields require input: {this.state.invalidFields.join(', ')}
+                    </Alert>
+                )}
               </Form>
             </Col>
             <Col></Col>

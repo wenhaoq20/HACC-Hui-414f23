@@ -1,6 +1,6 @@
 import React from 'react';
-import { Grid, Segment, Header } from 'semantic-ui-react';
-import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic';
+// import { Grid, Segment, Header } from 'semantic-ui-react';
+// import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic';
 import swal from 'sweetalert';
 import { SimpleSchema2Bridge } from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
@@ -32,9 +32,8 @@ class AddChallenge extends React.Component {
     const { title, description, submissionDetail, pitch } = data;
     const definitionData = { title, description, submissionDetail, pitch };
     const collectionName = Challenges.getCollectionName();
-    console.log(formRef);
-    console.log(collectionName);
-    defineMethod.call({ collectionName: collectionName, definitionData: definitionData },
+    console.log(definitionData);
+    /* defineMethod.call({ collectionName: collectionName, definitionData: definitionData },
         (error) => {
           if (error) {
             swal('Error', error.message, 'error');
@@ -44,7 +43,7 @@ class AddChallenge extends React.Component {
             formRef.reset();
             // console.log('Success');
           }
-        });
+        }); */
   }
 
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
@@ -52,51 +51,36 @@ class AddChallenge extends React.Component {
     let fRef = null;
     const formSchema = new SimpleSchema2Bridge(schema);
     return (
-        /*  <Grid container centered>
-            <Grid.Column>
-              <Header as="h2" textAlign="center">Add a challenge</Header>
-              <AutoForm ref={ref => {
-                fRef = ref;
-              }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
-                <Segment>
-                  <TextField name='title' />
-                  <TextField name='description' />
-                  <TextField name='submissionDetail' />
-                  <TextField name='pitch' />
-                  <SubmitField value='Submit' />
-                  <ErrorsField />
-                </Segment>
-              </AutoForm>
-            </Grid.Column>
-          </Grid> */
         <Container>
-          <Header as="h2" textAlign="center">Add a challenge</Header>
           <Row>
             <Col></Col>
             <Col xs={8}>
-              <Form ref={ref => {
+              <h2>Add a challenge</h2>
+              <AutoForm ref={ref => {
                 fRef = ref;
-              }} schema={formSchema} onSubmit={data => this.submit(data, fRef)}>
+              }} schema={formSchema}>
                 <Form.Group className="mb-3" controlId="formTitle">
                   <Form.Label>Title</Form.Label>
-                  <Form.Control type="Title" placeholder="Enter Title"/>
+                  <Form.Control name="Title" type="text" placeholder="Enter Title"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formDescription">
                   <Form.Label>Description</Form.Label>
-                  <Form.Control type="Description" placeholder="Enter Description"/>
+                  <Form.Control name="Description" type="text" placeholder="Enter Description"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formSubmissionDetail">
                   <Form.Label>Submission Detail</Form.Label>
-                  <Form.Control type="SubmissionDetail" placeholder="Enter Submission Detail"/>
+                  <Form.Control name="SubmissionDetail" type="text" placeholder="Enter Submission Detail"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="pitch">
                   <Form.Label>Pitch</Form.Label>
-                  <Form.Control type="Pitch" placeholder="Enter Pitch"/>
+                  <Form.Control name="Pitch" type="text" placeholder="Enter Pitch"/>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" name="submit"
+                        onClick={data => this.submit(data, fRef)}
+                >
                   Submit
                 </Button>
-              </Form>
+              </AutoForm>
             </Col>
             <Col></Col>
           </Row>

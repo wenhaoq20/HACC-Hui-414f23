@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Grid, Segment, Header } from 'semantic-ui-react';
-// import { AutoForm, ErrorsField, SubmitField, TextField } from 'uniforms-semantic';
+import { AutoForm } from 'meteor/aldeed:autoform';
 import swal from 'sweetalert';
 import { SimpleSchema2Bridge } from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
@@ -56,31 +56,35 @@ class AddChallenge extends React.Component {
             <Col></Col>
             <Col xs={8}>
               <h2>Add a challenge</h2>
-              <AutoForm ref={ref => {
-                fRef = ref;
-              }} schema={formSchema}>
-                <Form.Group className="mb-3" controlId="formTitle">
-                  <Form.Label>Title</Form.Label>
-                  <Form.Control name="Title" type="text" placeholder="Enter Title"/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formDescription">
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control name="Description" type="text" placeholder="Enter Description"/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formSubmissionDetail">
-                  <Form.Label>Submission Detail</Form.Label>
-                  <Form.Control name="SubmissionDetail" type="text" placeholder="Enter Submission Detail"/>
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="pitch">
-                  <Form.Label>Pitch</Form.Label>
-                  <Form.Control name="Pitch" type="text" placeholder="Enter Pitch"/>
-                </Form.Group>
-                <Button variant="primary" name="submit"
-                        onClick={data => this.submit(data, fRef)}
-                >
-                  Submit
-                </Button>
-              </AutoForm>
+                <Form ref={ref => {
+                  fRef = ref;
+                }} schema={formSchema}>
+                  <Form.Group className="mb-3" controlId="title">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control name="title" type="text" placeholder="Enter Title"/>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="description">
+                    <Form.Label>Description</Form.Label>
+                    <Form.Control name="description" type="text" placeholder="Enter Description"/>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="submissionDetail">
+                    <Form.Label>Submission Detail</Form.Label>
+                    <Form.Control name="submissionDetail" type="text" placeholder="Enter Submission Detail"/>
+                  </Form.Group>
+                  <Form.Group className="mb-3" controlId="pitch">
+                    <Form.Label>Pitch</Form.Label>
+                    <Form.Control name="pitch" type="text" placeholder="Enter Pitch"/>
+                  </Form.Group>
+                  <Button variant="primary" name="submit"
+                          onClick={data => {
+                            console.log(fRef);
+                            this.submit(data, fRef);
+                          }
+                          }
+                  >
+                    Submit
+                  </Button>
+                </Form>
             </Col>
             <Col></Col>
           </Row>

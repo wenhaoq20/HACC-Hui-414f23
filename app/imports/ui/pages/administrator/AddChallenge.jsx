@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import swal from 'sweetalert';
 import { SimpleSchema2Bridge } from 'uniforms-bridge-simple-schema-2';
 import SimpleSchema from 'simpl-schema';
@@ -20,31 +20,40 @@ const schema = new SimpleSchema({
  * Renders the Page for adding stuff. **deprecated**
  * @memberOf ui/pages
  */
-class AddChallenge extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: '',
-      description: '',
-      submissionDetail: '',
-      pitch: '',
-      invalidFields: [],
-    };
-  }
+const AddChallenge = () => {
+  const [challenge, setChallenge] = useState({
+    title: '', description: '', submissionDetail: '', pitch: '', invalidFields: [],
+  });
 
-  handleInputChange = (event) => {
+  // eslint-disable-next-line no-unused-vars
+  const handleInputChange = (event) => {
     const { name, value } = event.target;
-    this.setState({ [name]: value });
-  }
+    setChallenge({ [name]: value });
+  };
+  const validateFields = () => {
+    const fieldsToValidate = ['title', 'description', 'submissionDetail', 'pitch'];
+    const fields = ['Title', 'Description', 'Submission Detail', 'Pitch'];
+    const invalidFields = [];
+    let i = 0;
+    fieldsToValidate.forEach((fieldName) => {
+      const fieldValue = challenge[fieldName].trim();
+      if (!fieldValue) {
+        invalidFields.push(fields[i]);
+      }
+      i++;
+    });
+
+    return invalidFields;
+  };
 
   /** On submit, insert the data.
    */
-  submit() {
-    const invalidFields = this.validateFields();
+  const submit = () => {
+    const invalidFields = validateFields();
     if (invalidFields.length > 0) {
-      this.setState({ invalidFields });
+      setChallenge({ invalidFields });
     } else {
-      const { title, description, submissionDetail, pitch } = this.state;
+      const { title, description, submissionDetail, pitch } = challenge;
       const definitionData = { title, description, submissionDetail, pitch };
       const collectionName = Challenges.getCollectionName();
       defineMethod.call({ collectionName: collectionName, definitionData: definitionData },
@@ -54,7 +63,7 @@ class AddChallenge extends React.Component {
               // console.error(error.message);
             } else {
               swal('Success', 'Item added successfully', 'success');
-              this.setState({
+              setChallenge({
                 title: '',
                 description: '',
                 submissionDetail: '',
@@ -65,44 +74,27 @@ class AddChallenge extends React.Component {
             }
           });
     }
-  }
+  };
 
-  validateFields = () => {
-    const fieldsToValidate = ['title', 'description', 'submissionDetail', 'pitch'];
-    const fields = ['Title', 'Description', 'Submission Detail', 'Pitch'];
-    const invalidFields = [];
-    let i = 0;
-    fieldsToValidate.forEach((fieldName) => {
-      const fieldValue = this.state[fieldName].trim();
-      if (!fieldValue) {
-        invalidFields.push(fields[i]);
-      }
-      i++;
-    });
-
-    return invalidFields;
-  }
-
+  let fRef = null;
+  const formSchema = new SimpleSchema2Bridge(schema);
   /** Render the form. Use Uniforms: https://github.com/vazco/uniforms */
-  render() {
-    let fRef = null;
-    const formSchema = new SimpleSchema2Bridge(schema);
-    return (
-        <Container>
-          <Row>
-            <Col></Col>
-            <Col xs={8}>
-              <h2>Add a challenge</h2>
-              <Form ref={ref => {
-                fRef = ref;
-              }} schema={formSchema}>
+  return (
+      <Container>
+        <Row>
+          <Col></Col>
+          <Col xs={8}>
+            <h2>Add a challenge</h2>
+            <Form ref={ref => {
+              fRef = ref;
+            }} schema={formSchema}>
                 <Form.Group className="mb-3" controlId="title">
                   <Form.Label>Title</Form.Label>
                   <Form.Control
                       name="title"
                       type="text"
-                      value={this.state.title}
-                      onChange={this.handleInputChange}
+                      value={challenge.title}
+                      onChange={handleInputChange}
                       placeholder="Enter Title"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="description">
@@ -110,8 +102,8 @@ class AddChallenge extends React.Component {
                   <Form.Control
                       name="description"
                       type="text"
-                      value={this.state.description}
-                      onChange={this.handleInputChange}
+                      value={challenge.description}
+                      onChange={handleInputChange}
                       placeholder="Enter Description"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="submissionDetail">
@@ -119,8 +111,8 @@ class AddChallenge extends React.Component {
                   <Form.Control
                       name="submissionDetail"
                       type="text"
-                      value={this.state.submissionDetail}
-                      onChange={this.handleInputChange}
+                      value={challenge.submissionDetail}
+                      onChange={handleInputChange}
                       placeholder="Enter Submission Detail"/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="pitch">
@@ -128,26 +120,25 @@ class AddChallenge extends React.Component {
                   <Form.Control
                       name="pitch"
                       type="text"
-                      value={this.state.pitch}
-                      onChange={this.handleInputChange}
+                      value={challenge.pitch}
+                      onChange={handleInputChange}
                       placeholder="Enter Pitch"/>
                 </Form.Group>
                 <Button variant="primary" name="submit"
-                        onClick={data => this.submit(data, fRef)}>
+                        onClick={data => submit(data, fRef)}>
                   Submit
                 </Button>
-                {this.state.invalidFields.length > 0 && (
+                {challenge.invalidFields.length > 0 && (
                     <Alert name="invalidAlert" variant="danger">
-                      The following fields require input: {this.state.invalidFields.join(', ')}
+                      The following fields require input: {challenge.invalidFields.join(', ')}
                     </Alert>
                 )}
-              </Form>
-            </Col>
-            <Col></Col>
-          </Row>
-        </Container>
-    );
-  }
-}
+            </Form>
+          </Col>
+          <Col></Col>
+        </Row>
+      </Container>
+  );
+};
 
 export default AddChallenge;

@@ -8,7 +8,7 @@ import { Grid, Icon, Image } from 'semantic-ui-react';
 class Landing extends React.Component {
   render() {
     return (
-      <Grid stackable rows={'equal'}>
+      <Grid id={'landing'} stackable rows={'equal'}>
         <Grid.Row style={{ margin: 50 }}>
           <Grid.Column
             width={8}
